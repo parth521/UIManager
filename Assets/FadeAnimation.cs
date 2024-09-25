@@ -4,15 +4,8 @@ using UnityEngine;
 using PixelPerfectGames.UISystem;
 public class FadeAnimation : UIAnimations
 {
-    private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    private void Awake() {
-        UIAnimator uIAnimator=transform.root.GetComponent<UIAnimator>();
-        if(uIAnimator!=null)
-        {
-            uIAnimator.RegisterAnimation(this);
-        }
-        rectTransform = GetComponent<RectTransform>();
+    public override void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
     }
    

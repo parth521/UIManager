@@ -8,4 +8,8 @@ namespace PixelPerfectGames.UISystem
         GamePopup
         // Add more screens as needed
     }
+    public enum AnimationName
+    {
+        None
+    }
 }

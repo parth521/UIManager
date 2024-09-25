@@ -8,13 +8,21 @@ namespace PixelPerfectGames.UISystem
     public class UIAnimator: MonoBehaviour
     {
         public List<UIAnimations> animations=new List<UIAnimations>();
+        public List<UIAnimations> customAnimations=new List<UIAnimations>();
         private Action onAnimationShowComplete;
         public Action onAnimationHideComplete;
         private int showanimCount=0;
         private int hideanimCount=0;
         public void RegisterAnimation(UIAnimations animation)
         {
-            animations.Add(animation);
+            if(animation.animationName==AnimationName.None)
+            {
+                animations.Add(animation);
+            }
+            else
+            {
+                customAnimations.Add(animation);
+            }
         }
         private void OnDestroy() {
             animations.Clear();
@@ -37,6 +45,10 @@ namespace PixelPerfectGames.UISystem
             {
                 animation.Hide(onHideComplete);
             }
+        }
+        public void DoCustomAnimation(AnimationName animationName,Action onCompleteCallback = null)
+        {
+          customAnimations.Find(x=>x.animationName==animationName).Show(onCompleteCallback);
         }
         private void onShowComplete()
         { 
